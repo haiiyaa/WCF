@@ -1,0 +1,28 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Runtime.Serialization;
+using System.Threading.Tasks;
+
+namespace FakeFlyveturDB
+{
+   
+    [DataContract]
+    public class FlyveTur
+    {
+        [DataMember]
+        public int FlyveturId { get; set; }
+        [DataMember]
+        public string Flytype { get; set; }
+        [DataMember]
+        public string Fra { get; set; }
+        [DataMember]
+        public string Til { get; set; }
+        [DataMember]
+        public DateTime Afgang { get; set; }
+        [DataMember]
+        public DateTime Ankomst { get; set; }
+    }
+
+}
