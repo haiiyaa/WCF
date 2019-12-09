@@ -1,0 +1,51 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FakeFlyveturDB
+{
+    public class FakeDB
+    {
+        private List<FlyveTur> _listFlyveTur = new List<FlyveTur>() { new FlyveTur() { Afgang = DateTime.Parse("22/03/2015"), Ankomst = DateTime.Parse("22/04/2015"), Flytype = "Airbus 380", FlyveturId = 1, Fra = "København", Til = "Nyborg" } };
+        
+        public List<FlyveTur> GetAllItems()
+        {
+            return _listFlyveTur;
+        }
+        public FlyveTur GetSpecificItems(int p)
+        {
+            return _listFlyveTur[p - 1];
+        }
+        public void UpdateItem(FlyveTur flyvetur)
+        {
+            foreach (FlyveTur item in _listFlyveTur)
+            {
+                if (item.FlyveturId == flyvetur.FlyveturId)
+                {
+                    item.Flytype = flyvetur.Flytype;
+                    item.Fra = flyvetur.Fra;
+                    item.Ankomst = flyvetur.Ankomst;
+                    item.Ankomst = flyvetur.Afgang;
+                }
+            }
+        }
+        public FlyveTur AddItem(string flytype, string fra, string til, string afgang, string ankomst)
+        {
+            var AddFlyveTur = new FlyveTur();
+            AddFlyveTur.Afgang = DateTime.Parse(afgang);
+            AddFlyveTur.Ankomst = DateTime.Parse(ankomst);
+            AddFlyveTur.FlyveturId = _listFlyveTur.Count + 1;
+            AddFlyveTur.Flytype = flytype;
+            AddFlyveTur.Fra = fra;
+            AddFlyveTur.Til = til;
+            _listFlyveTur.Add(AddFlyveTur);
+            return AddFlyveTur;
+        }
+        public void RemoveItem(int id)
+        {
+            _listFlyveTur.RemoveAt(id);
+        }
+    }
+}
